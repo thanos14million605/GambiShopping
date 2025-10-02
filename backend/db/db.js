@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
-const connectToDB = async (uri) => {
+const connectToDB = async (url) => {
   try {
-    await mongoose.connect(uri);
-    console.log("DB Connection Successful");
+    mongoose.set("strictQuery", false);
+    await mongoose.connect(url, { dbName: "GambiShopping" });
+    console.log("DB Connected Successfully ✅");
   } catch (err) {
-    console.log("DB Connection Failed", err);
+    console.error("DB Connection Failed ❌", err);
   }
 };
 
